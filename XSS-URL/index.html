@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.0.7/purify.min.js"
+        integrity="sha256-iO9yO1Iy0P2hJNUeAvUQR2ielSsGJ4rOvK+EQUXxb6E=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header></header>
+    <main id="main"></main>
+    <footer></footer>
+
+    <script>
+
+
+						main.innerHTML = DOMPurify.sanitize(new URL(location).searchParams.get('bears') || "Hello Bears")
+
+						setTimeout(ok, 2000)
+
+						let search = new URLSearchParams(location.search)
+
+						const redirectURL = search.get('redirectURL');
+
+						let regex = /^[a-zA-Z0-9\t]+\:\/\/example\.com\/.*/
+
+						let regexUrl= redirectURL.match(regex)
+
+						let antiXSS = redirectURL.startsWith('javascript')
+
+
+						if(regexUrl && !antiXSS){
+								setTimeout(()=>{
+									location.href = redirectURL
+								},1000)
+						}
+
+    </script>
+  </body>
+</html>

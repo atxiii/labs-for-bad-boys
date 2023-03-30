@@ -1,7 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const inviteCode  = require('./secret.js')
-const app =  express()
+const app =  express();
+
+// [client] --[f]--  [server]
+// [stringify ] -> [-> json] -> server
 app.use(bodyParser.json());
 
 const port = 3000
@@ -23,17 +26,18 @@ function createUser(user){
 }
 
 app.post('/', (req, res)=>{
-		// res.send(req.body)
-		let user = req.body;
-		if(user.isAdmin && user.inviteCode !== inviteCode){
-				res.send('No invite code? No admin!');
-		}else{
-				let newUser= Object.assign(baseUser, user);
-
-				if(newUser.isAdmin) createAdmin(newUser);
-				else createUser(newUser);
-				res.send('Successfully created '+ `${newUser.isAdmin ? 'Admin': 'User'}`)
-		}
+	let user = req.body;
+	// req.body => __proto__
+	// ..
+	if(user.isAdmin && user.inviteCode !== inviteCode){
+		res.send('No invite code? No admin!');
+	}else{
+		// user => {__proto__:{"isAdmin"}}
+		let newUser= Object.assign(baseUser, user);
+		if(newUser.isAdmin) createAdmin(newUser);
+		else createUser(newUser);
+		res.send('Successfully created '+ `${newUser.isAdmin ? 'Admin': 'User'}`)
+	}
 })
 
 
