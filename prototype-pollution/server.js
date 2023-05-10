@@ -27,6 +27,7 @@ function createUser(user){
 
 app.post('/', (req, res)=>{
 	let user = req.body;
+	console.log(req.body);
 	// req.body => __proto__
 	// ..
 	if(user.isAdmin && user.inviteCode !== inviteCode){

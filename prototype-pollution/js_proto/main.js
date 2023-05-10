@@ -14,7 +14,7 @@ Object.assign(y,x);
 // console.log(`x`, x)
 
 
-
+// JSON.stringify(x)
 
 const x2 = JSON.parse("{\"name\":\"catfahter\",\"__proto__\":{\"role\":\"admin\"}}");
 console.log(x2)
@@ -26,6 +26,7 @@ console.log(x2)
 
 // function userCreator1(name, score){
 // 		const newUser = Object.create({});
+
 // 		newUser.name = name;
 // 		newUser.score = score;
 // 		newUser.increment= function(){
@@ -56,7 +57,7 @@ console.log(x2)
 //  increment : ->[f]->
 //  login : ->[f]->
 //   -----------
-//    __proto__ -> object_base
+//    __proto__ -> object_base [[prototype]]
 //}
 
 //
@@ -65,8 +66,8 @@ console.log(x2)
 // #1
 // function userCreator2(name, score){
 // 		// 3.1
-// newuse = {} <- method
 // 		const newUser = Object.create(userFunctionStore);
+// 		console.log(newUser);
 // 		// 3.2
 // 		newUser.name = name;
 // 		// 3.3
@@ -74,30 +75,18 @@ console.log(x2)
 // 		// 3.4
 // 		return newUser;
 // }
-// #2
+// // #2
 // const userFunctionStore = {
 // 		increment: function(){this.score++},
 // 		login: function(){console.log('login!')}
 // }
-// #3
+// // #3
 // const user3 = userCreator2('Alex',2);
-// #4
+// // #4
 // const user4 = userCreator2('Tom', 3);
-// #5
-// console.log(user3)
-// #
+// // #5
 // user3.increment();
-// 1- ->[f]->
-// 2- userFunctionStore ->
-// 3- user3 ->
-// name = alex
-// score = 2
-// {
-	// increment: function(){this.score++},
-	// login: function(){console.log('login!')}
-	// name: alex
-	// socre: 2
-// }
+
 
 // automate it with new/this JavaScript feature
 // window
@@ -106,7 +95,10 @@ console.log(x2)
 // 		// this -> {}
 // 		this.name = name
 // 		this.score = score
-// 		// prototype { }
+// 		// prototype {
+
+// 		//  }
+// 		// return this
 // 		console.log('this', this)
 // }
 // // console.log('global this',this)
@@ -135,15 +127,15 @@ console.log(x2)
 
 
 
-function UserCreator8(name, score){
-	this.name = name;
-	this.score = score;
-	console.log('this in userCreator' ,this)
-}
-UserCreator8.prototype.increament = function(){
-		this.score++;
-		console.log('this in increament',this)
-};
-const user8 = new UserCreator8("MM", 3);
+// function UserCreator8(name, score){
+// 	this.name = name;
+// 	this.score = score;
+// 	console.log('this in userCreator' ,this)
+// }
+// UserCreator8.prototype.increament = function(){
+// 		this.score++;
+// 		console.log('this in increament',this)
+// };
+// const user8 = new UserCreator8("MM", 3);
 
-user8.increament();
+// user8.increament();

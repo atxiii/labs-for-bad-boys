@@ -1,0 +1,61 @@
+.group{
+	display:flex;
+	align-items:between;
+	width:500px;
+	gap:5px;
+	margin-bottom:50px;
+}
+
+
+h1 {
+			font-size: 7.7rem;
+			line-height: 1.055em;
+			margin-bottom: 0;
+			background: url('bg.png');
+			background-size: auto;
+			background-clip: border-box;
+			background-size: auto 20%;
+			background-clip: text;
+			text-fill-color: transparent;
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			animation: bgImageAnim 7s linear infinite;
+	}
+
+	@-webkit-keyframes bgImageAnim {
+		from {
+				background-position: center 0;
+		}
+		to {
+				background-position: center 200%;
+		}
+}
+@keyframes bgImageAnim {
+		from {
+				background-position: center 0;
+		}
+		to {
+				background-position: center 200%;
+		}
+}
+
+body{
+		background:#000;
+}
+button{
+	display: block;
+	padding: 10px 40px;
+	background: #100d0d;
+	color: #1fff1f;
+	font-size: 20px;
+	border: none;
+	cursor: crosshair;
+}
+
+main{
+	display:flex;
+	flex-wrap:wrap;
+	flex-flow:column;
+	align-items: center;
+	margin-top:40px;
+}
