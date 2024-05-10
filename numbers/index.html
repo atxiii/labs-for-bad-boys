@@ -21,8 +21,8 @@
          const l = urlParams.get('left');
          let name = urlParams.get('name');
          if(name.toLowerCase().indexOf('is')>=0) {
-											alert('You are Noob!:D');
-											throw('bye bye');
+           alert('You are Noob!:D');
+           throw('bye bye');
          }
          name = name.slice(0,10).trim().replaceAll(' ');
          let msg='';
@@ -32,9 +32,9 @@
          if(xx==0 && !x.startsWith('0')) msg +='Is';
 
          if(ss>0){
-												if(s==ss-1){
-																				msg +=' Not '
-												}
+            if(s==ss-1){
+              msg +=' Not '
+            }
          }
 
          if(Number(q)!=Number(q) && q==Number(q)+"") msg +='Noob!';
